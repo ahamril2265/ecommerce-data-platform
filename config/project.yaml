@@ -1,0 +1,15 @@
+project:
+  name: ecommerce-data-platform
+  domain: ecommerce
+  environment: local
+  version: 0.1.0
+
+storage:
+  raw: data/raw
+  processed: data/processed
+  curated: data/curated
+
+standards:
+  time_zone: UTC
+  date_format: YYYY-MM-DD
+  file_format: parquet

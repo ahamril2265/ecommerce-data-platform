@@ -1,0 +1,23 @@
+table: dim_time
+type: dimension
+description: Time dimension
+
+columns:
+  - name: date_key
+    type: integer
+    primary_key: true
+
+  - name: date
+    type: date
+
+  - name: day
+    type: integer
+
+  - name: month
+    type: integer
+
+  - name: year
+    type: integer
+
+  - name: day_of_week
+    type: string

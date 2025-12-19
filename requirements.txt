@@ -1,0 +1,5 @@
+pandas
+pyyaml
+faker
+pyarrow
+fastparquet

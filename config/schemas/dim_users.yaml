@@ -1,0 +1,31 @@
+table: dim_users
+type: dimension
+scd_type: 2
+description: Customer profile information
+
+columns:
+  - name: user_sk
+    type: integer
+    surrogate_key: true
+
+  - name: user_id
+    type: string
+    nullable: false
+
+  - name: name
+    type: string
+
+  - name: email
+    type: string
+
+  - name: country
+    type: string
+
+  - name: effective_from
+    type: timestamp
+
+  - name: effective_to
+    type: timestamp
+
+  - name: is_current
+    type: boolean

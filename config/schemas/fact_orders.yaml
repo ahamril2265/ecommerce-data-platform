@@ -1,0 +1,33 @@
+table: fact_orders
+type: fact
+grain: one row per product per order
+description: Order line items
+
+columns:
+  - name: order_id
+    type: string
+    nullable: false
+
+  - name: order_item_id
+    type: string
+    nullable: false
+
+  - name: user_id
+    type: string
+    nullable: false
+
+  - name: product_id
+    type: string
+    nullable: false
+
+  - name: quantity
+    type: integer
+
+  - name: unit_price
+    type: float
+
+  - name: order_timestamp
+    type: timestamp
+
+  - name: ingestion_timestamp
+    type: timestamp

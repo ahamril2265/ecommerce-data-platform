@@ -1,0 +1,31 @@
+table: dim_products
+type: dimension
+scd_type: 2
+description: Product catalog with pricing history
+
+columns:
+  - name: product_sk
+    type: integer
+    surrogate_key: true
+
+  - name: product_id
+    type: string
+    nullable: false
+
+  - name: product_name
+    type: string
+
+  - name: category
+    type: string
+
+  - name: price
+    type: float
+
+  - name: effective_from
+    type: timestamp
+
+  - name: effective_to
+    type: timestamp
+
+  - name: is_current
+    type: boolean
