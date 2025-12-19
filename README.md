@@ -1,50 +1,31 @@
-# E-Commerce Data Engineering Platform
+E-Commerce Data Engineering Platform
+Overview
 
-## Overview
 This project is an end-to-end, production-style E-commerce Data Engineering platform that demonstrates how raw operational data is transformed into analytics-ready business metrics using industry best practices.
 
-The system follows a Medallion Architecture with Bronze, Silver, Gold, and Analytics layers and is designed to be scalable, idempotent, observable, and production-ready.
+The system follows a Medallion Architecture consisting of Bronze, Silver, Gold, and Analytics layers. It is designed to be scalable, idempotent, observable, and production-ready.
 
-This project was developed with the assistance of AI-powered development tools to accelerate design iteration, debugging, and architectural validation, reflecting how modern data engineering teams leverage AI in real-world workflows.
+This project was developed with the assistance of AI-powered development tools to accelerate design iteration, debugging, and architectural validation. This reflects how modern data engineering teams leverage AI tools in real-world workflows while maintaining strong engineering discipline.
 
----
+Architecture Overview
 
-## Architecture Overview
+The platform is structured as a layered data system.
 
-```text
-Synthetic Data Generator
-        |
-        v
-+----------------------+
-| Bronze Layer         |
-| data/raw             |
-| Immutable data       |
-+----------------------+
-        |
-        v
-+----------------------+
-| Silver Layer         |
-| data/processed       |
-| Cleaned data         |
-+----------------------+
-        |
-        v
-+----------------------+
-| Gold Layer           |
-| data/curated         |
-| Facts & Dimensions   |
-+----------------------+
-        |
-        v
-+----------------------+
-| Analytics Layer      |
-| data/analytics       |
-| KPIs & Metrics       |
-+----------------------+
+A synthetic data generator produces operational data such as users, products, events, and orders.
+
+The Bronze layer stores raw, immutable source data.
+
+The Silver layer contains cleaned, deduplicated, and validated data.
+
+The Gold layer exposes business-ready fact and dimension tables.
+
+The Analytics layer provides aggregated KPIs and metrics for reporting and analysis.
+
 Key Features
+
 Modular and package-safe Python architecture
 
-Clear Bronze, Silver, and Gold data layering
+Clear separation between Bronze, Silver, Gold, and Analytics layers
 
 Idempotent batch pipelines with safe re-runs
 
@@ -54,18 +35,19 @@ Hard and soft data quality enforcement
 
 Analytics-ready KPI datasets
 
-Designed for Airflow and Spark extensibility
+Designed for Apache Airflow and Apache Spark extensibility
 
 Built using AI-assisted development workflows
 
 Tech Stack
-Language: Python 3
 
-Processing: Pandas
+Programming language: Python 3
+
+Data processing: Pandas
 
 Storage format: Parquet
 
-Architecture: Medallion
+Architectural pattern: Medallion architecture
 
 Orchestration readiness: Apache Airflow
 
@@ -74,114 +56,75 @@ Logging: Python logging
 Development approach: AI-assisted tooling
 
 Project Structure
-text
-Copy code
-ecommerce-data-platform/
-├── data_generator/
-│   ├── generate_users.py
-│   ├── generate_products.py
-│   ├── generate_events.py
-│   ├── generate_orders.py
-│   └── run_generation.py
-│
-├── pipelines/
-│   ├── common/
-│   │   ├── io.py
-│   │   ├── logger.py
-│   │   ├── metrics.py
-│   │   └── data_quality.py
-│   │
-│   └── transform/
-│       ├── bronze_to_silver/
-│       └── silver_to_gold/
-│
-├── analytics/
-│   ├── models/
-│   └── run_analytics.py
-│
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   ├── curated/
-│   └── analytics/
-│
-├── docs/
-│   ├── architecture.md
-│   └── data_flow.md
-│
-└── README.md
+
+The repository is organized into the following main components:
+
+Data generator module for producing synthetic source data
+
+Pipeline modules for Bronze to Silver and Silver to Gold transformations
+
+Common utilities for logging, metrics, I/O, and data quality
+
+Analytics layer for KPI and metric generation
+
+Data directories for raw, processed, curated, and analytics outputs
+
+Documentation files describing architecture and data flow
+
 Pipeline Execution Order
-Step 1: Generate Raw Data
-bash
-Copy code
-python3 -m data_generator.run_generation
-This creates:
 
-text
-Copy code
-data/raw/
-Step 2: Bronze to Silver Transformation
-bash
-Copy code
-python3 -m pipelines.transform.bronze_to_silver.run_bronze_to_silver
-This creates:
+The pipeline is executed in the following logical order:
 
-text
-Copy code
-data/processed/
-Step 3: Silver to Gold Transformation
-bash
-Copy code
-python3 -m pipelines.transform.silver_to_gold.run_silver_to_gold
-This creates:
+Raw data generation into the Bronze layer
 
-text
-Copy code
-data/curated/
-Step 4: Analytics and KPIs
-bash
-Copy code
-python3 -m analytics.run_analytics
-This creates:
+Cleaning and validation from Bronze to Silver
 
-text
-Copy code
-data/analytics/
+Business modeling from Silver to Gold
+
+KPI and metrics generation in the Analytics layer
+
+Each step is designed to be safely re-runnable and independent.
+
 Data Quality and Reliability
-Pipelines fail on:
 
-Null primary keys
+The system enforces strong data quality guarantees.
 
-Invalid quantities or prices
+Pipelines fail when primary keys are null
 
-Empty datasets
+Invalid quantities or prices are rejected
+
+Empty datasets are treated as errors
 
 Partitioned writes ensure idempotent processing
 
-Structured logs enable fast debugging
+Structured logs enable fast debugging and traceability
 
-Safe reprocessing and backfills are supported
+Safe reprocessing and backfills are supported by design
 
 AI-Assisted Development
-This project demonstrates AI-assisted engineering in the following areas:
 
-Architecture planning
+This project intentionally demonstrates AI-assisted engineering in the following areas:
+
+Architectural planning and validation
 
 Debugging and refactoring
 
 Data pipeline hardening
 
-Documentation and validation
+Documentation creation and review
 
-The goal is to increase development velocity without sacrificing engineering discipline.
+The goal is to increase development velocity without sacrificing correctness, maintainability, or engineering rigor.
 
 Future Enhancements
-Apache Airflow orchestration
 
-Spark-based scaling
+Planned future improvements include:
+
+Full Apache Airflow DAG orchestration
+
+Migration to Spark for large-scale processing
 
 Streaming clickstream ingestion
 
 Business intelligence dashboards
 
-Cloud deployment on object storage and warehouses
+Cloud deployment on object storage and analytical warehouses
